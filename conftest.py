@@ -2,8 +2,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-import time
-
 
 def pytest_addoption(parser):
     """Метод позволяет запускать тест, который зависит от опции командной строки
@@ -24,5 +22,4 @@ def browser(request):
     browser = webdriver.Chrome(options=options)
     yield browser
     print("\nquit browser..")
-    time.sleep(20)
     browser.quit()
