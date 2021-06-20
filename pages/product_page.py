@@ -1,0 +1,39 @@
+from .base_page import BasePage
+from .locators import ProductPageLocators
+
+
+class ProductPage(BasePage):
+    """Класс описывает страниуц продкута"""
+    def add_product_to_basket(self):
+        button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_PRODUCT)
+        button.click()
+        self.solve_quiz_and_get_code()
+
+        self.should_be_product_name()
+        self.should_be_product_price()
+        self.should_be_product_description()
+        self.should_be_add_button()
+        self.should_be_success()
+
+    def should_be_product_name(self):
+        """Проверяет наличие названия продукта"""
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "Product name not found"
+
+    def should_be_product_price(self):
+        """Проверяет наличие цены продукта"""
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE), "Product price not found"
+
+    def should_be_product_description(self):
+        """Проверяет наличие описания продукта"""
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_DESCRIPTION), "Product description not found"
+
+    def should_be_add_button(self):
+        """Проверяет наличие кнопки 'Добавить в корзину'"""
+        assert self.is_element_present(*ProductPageLocators.BUTTON_ADD_PRODUCT), "Button 'Добавить в корзину' is not " \
+                                                                                 "presented"
+
+    def should_be_success(self):
+        """Проверяет наличие сообщения об успешном добавлении товара в корзину"""
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES), "The message about the successful " \
+                                                                               "addition of the product to the " \
+                                                                               "basket was not found"

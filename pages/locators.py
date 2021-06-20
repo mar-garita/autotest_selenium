@@ -1,6 +1,12 @@
 from selenium.webdriver.common.by import By
 
 
+class UrlPages():
+    MAIN_PAGE_URL = "http://selenium1py.pythonanywhere.com/"  # главная страница
+    # страница товара
+    PRODUCT_PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+
+
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # ссылка на логин
 
@@ -11,5 +17,10 @@ class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")  # форма логина
 
 
-class UrlPages():
-    MAIN_PAGE_URL = "http://selenium1py.pythonanywhere.com/"  # главная страница
+class ProductPageLocators():
+    BUTTON_ADD_PRODUCT = (By.CSS_SELECTOR, ".btn-add-to-basket")  # кнопка "Добавить в корзину"
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".product_main h1")  # название товара
+    PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main p.price_color")  # цена товара
+    PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, "#product_description + p")  # описание товара
+    # уведомление о добавлении товара в корзину
+    SUCCESS_MESSAGES = (By.XPATH, "//div[@class='alert alert-safe alert-noicon alert-success  fade in'][1]//strong")
