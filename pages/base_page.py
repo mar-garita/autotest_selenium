@@ -18,7 +18,7 @@ class BasePage():
         self.browser.get(self.url)
 
     def is_element_present(self, how, what):
-        """Вспомогательный метод поиска элемента в базовой странице BasePage,
+        """Вспомогательный метод поиска элемента,
         который перехватывает исключения
         :param how: как искать элемент на странице (css, id, xpath и тд)
         :param what: что искать (строку-селектор)
@@ -29,6 +29,20 @@ class BasePage():
         except NoSuchElementException:
             return False
         return True
+
+    def get_text_element(self, how, what):
+        """
+        Вспомогательный метод получает текст элемента,
+        который перехватывает исключения
+        :param how: как искать элемент на странице (css, id, xpath и тд)
+        :param what: что искать (строку-селектор)
+        :return: текст элемента
+        """
+        try:
+            text = self.browser.find_element(how, what).text
+        except NoSuchElementException:
+            return False
+        return text
 
     def solve_quiz_and_get_code(self):
         """Считает результат математического выражения, которое появляется после нажатия на кнопку

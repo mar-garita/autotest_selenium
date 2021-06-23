@@ -23,4 +23,7 @@ class ProductPageLocators():
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main p.price_color")  # цена товара
     PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, "#product_description + p")  # описание товара
     # уведомление о добавлении товара в корзину
-    SUCCESS_MESSAGES = (By.XPATH, "//div[@class='alert alert-safe alert-noicon alert-success  fade in'][1]//strong")
+    SUCCESS_MESSAGES_PRODUCT_NAME = (By.XPATH, "//div[@class='alert alert-safe alert-noicon alert-success  fade in']["
+                                               "1]//strong")
+    SUCCESS_MESSAGES_PRODUCT_PRICE = (By.XPATH, "//div[@class='alert alert-safe alert-noicon alert-info  fade "
+                                                "in']//strong")

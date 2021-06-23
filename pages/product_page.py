@@ -34,6 +34,22 @@ class ProductPage(BasePage):
 
     def should_be_success(self):
         """Проверяет наличие сообщения об успешном добавлении товара в корзину"""
-        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES), "The message about the successful " \
-                                                                               "addition of the product to the " \
-                                                                               "basket was not found"
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGES_PRODUCT_NAME), "The message about the " \
+                                                                                            "successful addition of " \
+                                                                                            "the product to the " \
+                                                                                            "basket was not found "
+
+    def should_match_product_name(self):
+        """Проверяет, что название товара в сообщении об успешном добавлении
+        товара в корзину соответствует заголовку товара"""
+        product_name = self.get_text_element(*ProductPageLocators.PRODUCT_NAME)
+        product_name_in_basket = self.get_text_element(*ProductPageLocators.SUCCESS_MESSAGES_PRODUCT_NAME)
+        assert product_name == product_name_in_basket, "The product name doesn't match the product name in the basket"
+
+    def should_match_product_price(self):
+        """Проверяет, что цена товара в сообщении об успешном добавлении
+        товара в корзину соответствует цене, указанной в заголовке товара"""
+        product_price = self.get_text_element(*ProductPageLocators.PRODUCT_PRICE)
+        product_price_in_basket = self.get_text_element(*ProductPageLocators.SUCCESS_MESSAGES_PRODUCT_PRICE)
+        assert product_price == product_price_in_basket, "The product price doesn't match the product price in the " \
+                                                         "basket "
