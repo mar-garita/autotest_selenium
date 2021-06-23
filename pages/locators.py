@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 class UrlPages():
     MAIN_PAGE_URL = "http://selenium1py.pythonanywhere.com/"  # главная страница
     # страница товара
-    PRODUCT_PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+    # PRODUCT_PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
 
 
 class MainPageLocators():
