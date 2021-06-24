@@ -17,7 +17,7 @@ class BasePage():
         """Открывает нужную страницу"""
         self.browser.get(self.url)
 
-    def is_element_present(self, how, what):
+    def is_element_present(self, method, selector):
         """Вспомогательный метод поиска элемента,
         который перехватывает исключения
         :param how: как искать элемент на странице (css, id, xpath и тд)
@@ -25,12 +25,12 @@ class BasePage():
         :return: True или False
         """
         try:
-            self.browser.find_element(how, what)
+            self.browser.find_element(method, selector)
         except NoSuchElementException:
             return False
         return True
 
-    def get_text_element(self, how, what):
+    def get_text_element(self, method, selector):
         """
         Вспомогательный метод получает текст элемента,
         который перехватывает исключения
@@ -39,7 +39,7 @@ class BasePage():
         :return: текст элемента
         """
         try:
-            text = self.browser.find_element(how, what).text
+            text = self.browser.find_element(method, selector).text
         except NoSuchElementException:
             return False
         return text
