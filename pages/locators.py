@@ -4,11 +4,13 @@ from selenium.webdriver.common.by import By
 class UrlPages():
     MAIN_PAGE_URL = "http://selenium1py.pythonanywhere.com/"  # главная страница
     # страница товара
-    # PRODUCT_PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+    PRODUCT_PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+    PRODUCT2_PAGE_URL = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
 
-class MainPageLocators():
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # ссылка на логин
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
 
 
 class LoginPageLocators():
@@ -23,7 +25,7 @@ class ProductPageLocators():
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main p.price_color")  # цена товара
     PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, "#product_description + p")  # описание товара
     # уведомление о добавлении товара в корзину
-    SUCCESS_MESSAGES_PRODUCT_NAME = (By.XPATH, "//div[@class='alert alert-safe alert-noicon alert-success  fade in']["
-                                               "1]//strong")
-    SUCCESS_MESSAGES_PRODUCT_PRICE = (By.XPATH, "//div[@class='alert alert-safe alert-noicon alert-info  fade "
-                                                "in']//strong")
+    SUCCESS_MESSAGES_PRODUCT_NAME = (By.XPATH,
+                                     "//div[@class='alert alert-safe alert-noicon alert-success  fade in'][1]//strong")
+    SUCCESS_MESSAGES_PRODUCT_PRICE = (By.XPATH,
+                                      "//div[@class='alert alert-safe alert-noicon alert-info  fade in']//strong")

@@ -1,5 +1,9 @@
 import math
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
+from .locators import BasePageLocators
 
 
 class BasePage():
@@ -17,11 +21,21 @@ class BasePage():
         """Открывает нужную страницу"""
         self.browser.get(self.url)
 
+    def go_to_login_page(self):
+        """Метод осуществляет переходит на страницу логина"""
+        # символ * указывает на то, что передаем именно пару, и этот кортеж нужно распаковать
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def should_be_login_link(self):
+        """Метод проверяет наличие ссылки, которая ведет на логин"""
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
     def is_element_present(self, method, selector):
         """Вспомогательный метод поиска элемента,
         который перехватывает исключения
-        :param how: как искать элемент на странице (css, id, xpath и тд)
-        :param what: что искать (строку-селектор)
+        :param method: как искать элемент на странице (css, id, xpath и тд)
+        :param selector: что искать (строку-селектор)
         :return: True или False
         """
         try:
@@ -30,12 +44,43 @@ class BasePage():
             return False
         return True
 
+    def is_not_element_present(self, method, selector, timeout=4):
+        """
+        Метод проверяет, что элемент не появляется на странице в течение заданного времени
+        (использует явное ожидание)
+        :param method: как искать элемент на странице (css, id, xpath и тд)
+        :param selector: что искать (строку-селектор)
+        :param timeout:
+        :return:
+        """
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((method, selector)))
+        except TimeoutException:
+            return True
+        return False
+
+    def is_disappeared(self, method, selector, timeout=4):
+        """
+        Метод проверяет, что какой-то элемент на странице исчезает
+        (использует явное ожидание вместе с функцией until_not)
+        :param method:
+        :param selector:
+        :param timeout:
+        :return:
+        """
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                until_not(EC.presence_of_element_located((method, selector)))
+        except TimeoutException:
+            return False
+        return True
+
     def get_text_element(self, method, selector):
         """
         Вспомогательный метод получает текст элемента,
         который перехватывает исключения
-        :param how: как искать элемент на странице (css, id, xpath и тд)
-        :param what: что искать (строку-селектор)
+        :param method: как искать элемент на странице (css, id, xpath и тд)
+        :param selector: что искать (строку-селектор)
         :return: текст элемента
         """
         try:
