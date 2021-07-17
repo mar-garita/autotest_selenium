@@ -53,3 +53,8 @@ class ProductPage(BasePage):
         product_price_in_basket = self.get_text_element(*ProductPageLocators.SUCCESS_MESSAGES_PRODUCT_PRICE)
         assert product_price == product_price_in_basket, "The product price doesn't match the product price in the " \
                                                          "basket "
+
+    def go_to_basket_from_product_page(self):
+        button_basket = self.browser.find_element(*ProductPageLocators.BUTTON_SEE_BASKET)
+        button_basket.click()
+

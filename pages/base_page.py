@@ -21,8 +21,13 @@ class BasePage():
         """Открывает нужную страницу"""
         self.browser.get(self.url)
 
+    def go_to_basket(self):
+        """Метод осуществляет переход в корзину"""
+        button_basket = self.browser.find_element(*BasePageLocators.BUTTON_BASKET)
+        button_basket.click()
+
     def go_to_login_page(self):
-        """Метод осуществляет переходит на страницу логина"""
+        """Метод осуществляет переход на страницу логина"""
         # символ * указывает на то, что передаем именно пару, и этот кортеж нужно распаковать
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()

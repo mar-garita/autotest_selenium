@@ -11,6 +11,7 @@ class UrlPages():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BUTTON_BASKET = (By.CSS_SELECTOR, ".basket-mini.pull-right.hidden-xs > span > a")
 
 
 class LoginPageLocators():
@@ -20,6 +21,7 @@ class LoginPageLocators():
 
 
 class ProductPageLocators():
+    BUTTON_SEE_BASKET = (By.CSS_SELECTOR, ".basket-mini a.btn-default")  # кнопка "Просмотреть корзину"
     BUTTON_ADD_PRODUCT = (By.CSS_SELECTOR, ".btn-add-to-basket")  # кнопка "Добавить в корзину"
     PRODUCT_NAME = (By.CSS_SELECTOR, ".product_main h1")  # название товара
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main p.price_color")  # цена товара
@@ -29,3 +31,8 @@ class ProductPageLocators():
                                      "//div[@class='alert alert-safe alert-noicon alert-success  fade in'][1]//strong")
     SUCCESS_MESSAGES_PRODUCT_PRICE = (By.XPATH,
                                       "//div[@class='alert alert-safe alert-noicon alert-info  fade in']//strong")
+
+
+class BasketLocators():
+    PRODUCT_IN_BASKET = (By.CSS_SELECTOR, ".basket-items")
+    TEXT_BASKET_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
